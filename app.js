@@ -14,6 +14,29 @@ app.message('hellobot', async ({ message, say }) => {
   await say(`Hi, <@${message.user}>.`);
 });
 
+function dededeStringMaker() {
+  let daRow = ['ダ','ヂ','ヅ','デ','ド'];
+  let dededeString = '';
+
+  for (let i = 0; i < 3; i++) {
+    let randomNum = Math.floor(Math.random() * 5);
+    dededeString = dededeString + daRow[randomNum];
+  }
+
+  if (dededeString === 'デデデ') {
+    return ':tada: :dedede: デデデ大王 :dedede: :tada:';
+  }
+  return dededeString + '大王';
+}
+
+app.message('デデデ10連', async ({ say }) => {
+  let dededeStrings = [];
+  for (let i=0; i<10; i++) {
+    dededeStrings.push(dededeStringMaker());
+  }
+  await say(dededeStrings.join('\n'));
+});
+
 (async () => {
   // アプリを起動します
   await app.start(process.env.PORT || 3000);
